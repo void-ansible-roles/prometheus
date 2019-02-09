@@ -1,0 +1,31 @@
+---
+- name: Install Packages
+  xbps:
+    pkg: prometheus
+    state: present
+
+- name: Install Configuration
+  template:
+    src: prometheus.yml.j2
+    dest: /etc/prometheus/prometheus.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - prometheus
+
+- name: Configure Firewall
+  template:
+    src: prometheus.rules.j2
+    dest: /etc/iptables.d/prometheus.rules
+    owner: root
+    group: root
+    mode: 0640
+  notify:
+    - iptables
+
+- name: Enable Service
+  service:
+    name: prometheus
+    state: started
+    enabled: true
