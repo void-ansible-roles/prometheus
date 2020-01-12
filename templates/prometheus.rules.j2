@@ -4,4 +4,5 @@
 -A OUTPUT -p tcp -d {{ target.host }} --dport {{ target.port }} -j ACCEPT
 {% endfor %}
 {% endfor %}
+-A INPUT -p tcp --dport 9090 -j ACCEPT
 COMMIT
