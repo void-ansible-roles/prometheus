@@ -4,10 +4,20 @@
     pkg: prometheus
     state: present
 
-- name: Install Configuration
+- name: Install Configuration (1/2)
   template:
     src: prometheus.yml.j2
     dest: /etc/prometheus/prometheus.yml
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - prometheus
+
+- name: Install Configuration (2/2)
+  template:
+    src: conf.j2
+    dest: /etc/sv/prometheus/conf
     owner: root
     group: root
     mode: 0644
