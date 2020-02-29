@@ -1,8 +1,6 @@
 *filter
-{% for job in prometheus.jobs %}
-{% for target in job.targets %}
--A OUTPUT -p tcp -d {{ target.host }} --dport {{ target.port }} -j ACCEPT
-{% endfor %}
+{% for frule in prometheus.frules %}
+-A OUTPUT -p tcp -d {{ frule.host }} --dport {{ frule.port }} -j ACCEPT
 {% endfor %}
 -A INPUT -p tcp --dport 9090 -j ACCEPT
 COMMIT

@@ -19,11 +19,10 @@ Defaults Provided:
 
 Variables Required:
   * prometheus: # prometheus config variable
-      jobs: # List of jobs
-        - name: # Job name
-          targets: # List of targets
-            - host # Host for the scrape
-            - port # Port for the scrape
+    frules: # List of outbound firewall rules to establish
+      - host: # Host to allow
+        port: # Port to allow
+    cfg: # Valid prometheus configuration structure
 
 Optional Variables:
   * None
